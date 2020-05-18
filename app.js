@@ -1,4 +1,5 @@
 let web3js
+let account0
 
 window.onload = () => {
 
@@ -6,7 +7,7 @@ const portis = new Portis('f832ed08-1076-42c2-a927-20cbd8bfc9ae', 'core');
 const web3js = new Web3(portis.provider);
 
     web3js.eth.getAccounts((error, accounts) => {
-        console.log(accounts);
+        account0 = accounts[0]
     });
 
     const Address = "0xBA2241f9Fe4bB9FFdc50447BD2B75079073397c5";
@@ -73,8 +74,6 @@ sendTX = () => {
     let n = window.prompt("input number to write blockchain")
 
     if (n) {
-        web3js.eth.getAccounts((error, accounts) => {
-        mycontract.methods.setnumber(n).send({ from: accounts[0] });
-        })
+        mycontract.methods.setnumber(n).send({ from: account0 });
     }
 }
