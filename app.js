@@ -3,9 +3,9 @@ let web3js
 window.onload = () => {
 
 const portis = new Portis('f832ed08-1076-42c2-a927-20cbd8bfc9ae', 'core');
-const web3 = new Web3(portis.provider);
+const web3js = new Web3(portis.provider);
 
-    web3.eth.getAccounts((error, accounts) => {
+    web3js.eth.getAccounts((error, accounts) => {
         console.log(accounts);
     });
 
@@ -57,9 +57,9 @@ const web3 = new Web3(portis.provider);
         }
     ]
 
-    mycontract = new web3.eth.Contract(ABI, Address);
+    mycontract = new web3js.eth.Contract(ABI, Address);
 
-    console.log(web3.version)
+    console.log(web3js.version)
 
     mycontract.methods.getnumber().call().then((fromblockchain1) => {
         window.alert("getnumber value is " + fromblockchain1);
@@ -73,7 +73,7 @@ sendTX = () => {
     let n = window.prompt("input number to write blockchain")
 
     if (n) {
-        web3.eth.getAccounts((error, accounts) => {
+        web3js.eth.getAccounts((error, accounts) => {
         mycontract.methods.setnumber(n).send({ from: accounts[0] });
         })
     }
